@@ -7,6 +7,8 @@ Created on Mon Jun 26 17:45:49 2017
 Based on: https://github.com/waltdestler/Threesus/blob/master
 """
 
+# [1,2,3,6,12,24,48,96,192,384,768,1536,3072,6144,12288]
+
 import numpy as np
 import msvcrt as m
 from enum import Enum
@@ -202,6 +204,10 @@ class Board:
             prevCell = curCell
             curCell = tuple(np.subtract(curCell, increment))
         return ret
+    def getBoardLinearArray(self):
+        return self.cards.flatten()
+    def getBoardArray(self):
+        return list(self.cards)
 
 class Deck:
     def __init__(self, rand=None):
@@ -342,6 +348,7 @@ class Game:
         while val <= maxBonusCard:
             yield val
             val *= 2
+            
 class NextCardHint(Enum):
     One = 1
     Two = 2
